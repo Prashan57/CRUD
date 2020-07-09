@@ -53,12 +53,6 @@ class BlogController extends BackendController
      //   return view('backend/blog/update',['users'=>$users]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(/*Request $request,*/$id) {
  //       $name = $request->input('name');
  //       $type = $request->input('type');
@@ -75,24 +69,12 @@ class BlogController extends BackendController
   //      echo 'Click Here to go back.';
         User::where('user_id', 1)->update( array('username'=>'admin', 'status'=>'active') );
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update($id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $blogs = blog::findOrFail($id);

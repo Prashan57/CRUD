@@ -81,8 +81,8 @@
                                 <label for="body">Body :</label>
                                 <textarea name="body" placeholder="Write your post"></textarea>
                                 <br/>
-                                <label for="image">Upload /Select your image :</label>
-                                <input type="file" name="image">
+                                <label for="file">Upload /Select your image :</label>
+                                <input type="file" name="file">
                                 <hr>
                                 <input type="submit" value="SUBMIT">
                             </form>

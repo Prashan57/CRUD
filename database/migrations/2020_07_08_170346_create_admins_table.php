@@ -19,7 +19,7 @@ class CreateAdminsTable extends Migration
             $table->string("title");
             $table->string("reply")->nullable();
             $table->string("body");
-            $table->string("image")->nullable();
+            $table->string("file")->nullable();
             $table->timestamps();
         });
     }
