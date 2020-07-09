@@ -38,32 +38,37 @@ class AdminController extends BackendController
 
         return redirect('/backend/blog/admin');
 */
+        try{
+            $this->validate(request(), [
+                'type' => 'required',
+                'title' => 'required',
+                'body' => 'required',
+                'reply' => 'required',
+                'file' => 'required|image|mimes:jpg,jpeg,png,gif'
+            ]);
 
-        $this->validate(request(), [
-            'type' => 'required',
-            'title' => 'required',
-            'body' => 'required',
-            'reply' => 'required',
-            'file' => 'required|image|mimes:jpg,jpeg,png,gif'
-        ]);
+            $fileName = null;
+            if (request()->hasFile('file')) {
+                $file = request()->file('file');
+                $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+                $file->move('/backend/img', $fileName);
+            }
 
-        $fileName = null;
-        if (request()->hasFile('file')) {
-            $file = request()->file('file');
-            $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-            $file->move('/backend/img', $fileName);
+            admin::create([
+                'type' => request()->get('type'),
+                'title' => request()->get('title'),
+                'body' => request()->get('body'),
+                'reply' => request()->get('reply'),
+                'admin_img' => $fileName,
+                'admin_status' => "DEACTIVE"
+            ]);
+
         }
+}catch(Throwable $e){
+dd($e)
+}
+return redirect()->to("/backend/blog");
 
-        admin::create([
-            'type' => request()->get('type'),
-            'title' => request()->get('title'),
-            'body' => request()->get('body'),
-            'reply' => request()->get('reply'),
-            'admin_img' => $fileName,
-            'admin_status' => "DEACTIVE"
-        ]);
-
-        return redirect()->to('/backend/blog');
     }
 
     public function edit(){
