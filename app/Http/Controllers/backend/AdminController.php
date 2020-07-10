@@ -3,50 +3,53 @@
 namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
+use Throwable;
 
 class AdminController extends BackendController
 {
-    public function index(){
+    public function index()
+    {
         $admin = admin::latest()->paginate(6);
         $adminCount = admin::count();
-        return view("backend/blog/admin",compact("admin","adminCount"));
+        return view("backend/blog/admin", compact("admin", "adminCount"));
     }
 
-    public function store(){
-            /*
-        $this->validate(request(), [
-            'title' => 'required',
-            'file' => 'required|image|mimes:jpg,jpeg,png,gif'
-        ]);
+    public function store()
+    {
+        /*
+    $this->validate(request(), [
+        'title' => 'required',
+        'file' => 'required|image|mimes:jpg,jpeg,png,gif'
+    ]);
 
-        $fileName = null;
-        if (request()->hasFile('file')) {
-            $file = request()->file('file');
-            $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-            $file->move('/backend/img', $fileName);
-        }
+    $fileName = null;
+    if (request()->hasFile('file')) {
+        $file = request()->file('file');
+        $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+        $file->move('/backend/img', $fileName);
+    }
 
-        $admins = new admin();
+    $admins = new admin();
 
-        $admins->type = request('type');
-        $admins->title = request('title');
-        $admins->body = request('body');
-        $admins->reply = request('reply');
-        $admins->image = request($fileName);
+    $admins->type = request('type');
+    $admins->title = request('title');
+    $admins->body = request('body');
+    $admins->reply = request('reply');
+    $admins->image = request($fileName);
 
-        $admins->save();
+    $admins->save();
 
-        return redirect('/backend/blog/admin');
+    return redirect('/backend/blog/admin');
 */
-        try{
+        try {
             $this->validate(request(), [
                 'type' => 'required',
                 'title' => 'required',
                 'body' => 'required',
                 'reply' => 'required',
-                'file' => 'required|image|mimes:jpg,jpeg,png,gif'
+//                'file' => 'required|mimes:jpg,jpeg,png,gif,PNG'
             ]);
-
+//            dd('hello');
             $fileName = null;
             if (request()->hasFile('file')) {
                 $file = request()->file('file');
@@ -63,36 +66,39 @@ class AdminController extends BackendController
                 'admin_status' => "DEACTIVE"
             ]);
 
-        }
-}catch(Throwable $e){
-dd($e)
+
+}catch (Throwable $e)
+{
+dd($e);
 }
+
 return redirect()->to("/backend/blog");
 
-    }
+}
 
-    public function edit(){
-        dd("edit");
-    }
+public
+function edit()
+{
+    dd("edit");
+}
 
-    public function destroy(){
-        dd("destroy");
-    }
+public
+function destroy()
+{
+    dd("destroy");
+}
 
-    /**
+/**
+ * Display a listing of the resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
 
-     * Display a listing of the resource.
+public
+function imageUploadPost()
 
-     *
-
-     * @return \Illuminate\Http\Response
-
-     */
-
-    public function imageUploadPost()
-
-    {
+{
 
 
-    }
+}
 }
