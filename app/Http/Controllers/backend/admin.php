@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class admin extends Model
 {
+    protected $fillable = [
+        "type",
+        "title",
+        "reply",
+        "body",
+        "file",
+    ];
     public function dateFormatted($showTimes = false)
     {
         $format = "d/m/y";

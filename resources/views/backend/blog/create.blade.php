@@ -65,7 +65,7 @@
                              {!! Form::close() !!}
                             --}}
 
-                            <form action="{{ route('admin.store') }}" method="POST">
+                            <form action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <label for="type">Type :</label>
                                 <select name="type" id="type">
@@ -82,7 +82,7 @@
                                 <textarea name="body" placeholder="Write your post"></textarea>
                                 <br/>
                                 <label for="file">Upload /Select your image :</label>
-                                <input type="file" name="file">
+                                <input type="file" name="image">
                                 <hr>
                                 <input type="submit" value="SUBMIT">
                             </form>

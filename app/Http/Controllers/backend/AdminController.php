@@ -14,7 +14,8 @@ class AdminController extends BackendController
         return view("backend/blog/admin", compact("admin", "adminCount"));
     }
 
-    public function store()
+
+    public function store(Request $request)
     {
         /*
     $this->validate(request(), [
@@ -28,18 +29,19 @@ class AdminController extends BackendController
         $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
         $file->move('/backend/img', $fileName);
     }
+>>>>>>> 1fd5cd7d97abe34ff843a1632118589f30ff1d8d
 
-    $admins = new admin();
+$admins = new admin();
 
-    $admins->type = request('type');
-    $admins->title = request('title');
-    $admins->body = request('body');
-    $admins->reply = request('reply');
-    $admins->image = request($fileName);
+$admins->type = request('type');
+$admins->title = request('title');
+$admins->body = request('body');
+$admins->reply = request('reply');
+$admins->image = request($fileName);
 
-    $admins->save();
+$admins->save();
 
-    return redirect('/backend/blog/admin');
+return redirect('/backend/blog/admin');
 */
         try {
             $this->validate(request(), [
@@ -47,58 +49,63 @@ class AdminController extends BackendController
                 'title' => 'required',
                 'body' => 'required',
                 'reply' => 'required',
-//                'file' => 'required|mimes:jpg,jpeg,png,gif,PNG'
+
+                //    'file' => 'required|image|mimes:jpg,jpeg,png,gif'
             ]);
-//            dd('hello');
+            /*
             $fileName = null;
             if (request()->hasFile('file')) {
                 $file = request()->file('file');
                 $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
                 $file->move('/backend/img', $fileName);
             }
+            */
+
+            if ($request->hasFile('image')) {
+                dd("hello");
+                $path = $request->file('image')->store('public');
+            } else {
+                $path = '';
+            }
+            dd(request()->all());
 
             admin::create([
                 'type' => request()->get('type'),
                 'title' => request()->get('title'),
                 'body' => request()->get('body'),
                 'reply' => request()->get('reply'),
-                'admin_img' => $fileName,
-                'admin_status' => "DEACTIVE"
+                'file' => $path,
             ]);
 
+        } catch (Throwable $e) {
+            dd($e);
+        }
+        return redirect()->to("/backend/blog/admin");
+    }
 
-}catch (Throwable $e)
-{
-dd($e);
-}
-
-return redirect()->to("/backend/blog");
-
-}
-
-public
-function edit()
-{
-    dd("edit");
-}
-
-public
-function destroy()
-{
-    dd("destroy");
-}
-
-/**
- * Display a listing of the resource.
- *
- * @return \Illuminate\Http\Response
- */
-
-public
-function imageUploadPost()
-
-{
+    public function edit()
+    {
+        dd("edit");
+    }
 
 
-}
+    public
+    function destroy()
+    {
+        dd("destroy");
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public
+    function imageUploadPost()
+
+    {
+
+
+    }
 }
