@@ -12,7 +12,7 @@ class AdminController extends BackendController
         return view("backend/blog/admin",compact("admin","adminCount"));
     }
 
-    public function store(){
+    public function store(Request $request){
             /*
         $this->validate(request(), [
             'title' => 'required',
@@ -44,31 +44,37 @@ class AdminController extends BackendController
                 'title' => 'required',
                 'body' => 'required',
                 'reply' => 'required',
-                'file' => 'required|image|mimes:jpg,jpeg,png,gif'
+            //    'file' => 'required|image|mimes:jpg,jpeg,png,gif'
             ]);
-
+            /*
             $fileName = null;
             if (request()->hasFile('file')) {
                 $file = request()->file('file');
                 $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
                 $file->move('/backend/img', $fileName);
             }
+            */
+
+            if($request->hasFile('image')){
+                dd("hello");
+                $path = $request->file('image')->store('public');
+            }else{
+                $path = '';
+            }
+            dd(request()->all());
 
             admin::create([
                 'type' => request()->get('type'),
                 'title' => request()->get('title'),
                 'body' => request()->get('body'),
                 'reply' => request()->get('reply'),
-                'admin_img' => $fileName,
-                'admin_status' => "DEACTIVE"
+                'file' => $path,
             ]);
 
-        }
-}catch(Throwable $e){
-dd($e)
-}
-return redirect()->to("/backend/blog");
-
+    }catch(Throwable $e){
+    dd($e);
+    }
+return redirect()->to("/backend/blog/admin");
     }
 
     public function edit(){
