@@ -62,12 +62,12 @@ return redirect('/backend/blog/admin');
             */
 
             if ($request->hasFile('image')) {
-                dd("hello");
+
                 $path = $request->file('image')->store('public');
             } else {
                 $path = '';
             }
-            dd(request()->all());
+
 
             admin::create([
                 'type' => request()->get('type'),

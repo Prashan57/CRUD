@@ -64,7 +64,7 @@
                                             <td>{{ $admins->type }}</td>
                                             <td>{{ $admins->title }}</td>
                                             <td>{{ $admins->body }}</td>
-                                            <td>{{ $admins->image }}</td>
+                                            <td>{{ $admins->file }}</td>
                                             <td>
                                                 <abbr title="{{ $admins->dateFormatted(true) }}">{{ $admins-> dateFormatted() }}</abbr>
                                             </td>
