@@ -62,7 +62,7 @@
                                             <a href="{{ route("blog.edit",$blogs->id) }}" class="btn btn-xs btn-default">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a href="{{ route("destroy", $blogs->id) }}" class="btn btn-xs btn-danger">
+                                            <a href="{{ route("show", $blogs->id) }}" class="btn btn-xs btn-danger">
                                                 <i class="fa fa-times"></i>
                                             </a>
                                         </td>

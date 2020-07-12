@@ -25,7 +25,10 @@ Route::delete('/blogs/{id}', 'BlogController@destroy')->name('destroy')->middlew
 
 Route::get("/backend/blog/admin", "backend\AdminController@index")->name("admin")->middleware("auth");
 Route::post("/backend/blog/admin", "backend\AdminController@store")->name("admin.store")->middleware("auth");
-Route::get("/backend/blog/edit", "backend\AdminController@edit")->name("admin.edit")->middleware("auth");
+Route::get("/backend/blog/admin/{id}", "backend\AdminController@show")->name("admin.show")->middleware("auth");
+Route::delete("/backend/blog/admin/{id}", "backend\AdminController@destroy")->name("admin.destroy")->middleware("auth");
+Route::put("/backend/blog/admin/{id}", "backend\AdminController@update")->name("admin.update")->middleware("auth");
+Route::get("/backend/blog/admin/{id}", "backend\AdminController@edit")->name("admin.edit")->middleware("auth");
 
 Auth::routes(
     [

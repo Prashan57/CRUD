@@ -47,6 +47,7 @@
                                         <td>Title</td>
                                         <td>Body</td>
                                         <td>Image File</td>
+                                        <td>Reply</td>
                                         <td>Date</td>
                                     </tr>
                                     </thead>
@@ -54,10 +55,10 @@
                                     @foreach($admin as $admins)
                                         <tr>
                                             <td width="80">
-                                                <a href="#" class="btn btn-xs btn-default">
+                                                <a href="{{ route("admin.edit",["$admins->id"]) }}" class="btn btn-xs btn-default">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-xs btn-danger">
+                                                <a href="{{ route("admin.show",["$admins->id"]) }}" class="btn btn-xs btn-danger">
                                                     <i class="fa fa-times"></i>
                                                 </a>
                                             </td>
@@ -65,6 +66,7 @@
                                             <td>{{ $admins->title }}</td>
                                             <td>{{ $admins->body }}</td>
                                             <td>{{ $admins->file }}</td>
+                                            <td>{{ $admins->reply }}</td>
                                             <td>
                                                 <abbr title="{{ $admins->dateFormatted(true) }}">{{ $admins-> dateFormatted() }}</abbr>
                                             </td>

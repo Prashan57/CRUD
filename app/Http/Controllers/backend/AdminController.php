@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\Http\Controllers\backend\admin;
 use Illuminate\Http\Request;
 use Throwable;
 
@@ -11,9 +12,15 @@ class AdminController extends BackendController
     {
         $admin = admin::latest()->paginate(6);
         $adminCount = admin::count();
-        return view("backend/blog/admin", compact("admin", "adminCount"));
+        return view("backend.blog.admin", compact("admin", "adminCount"));
     }
 
+    public function show($id) {
+
+        $admins = admin::findOrFail($id);
+
+        return view('backend.blog.show', ['admin' => $admins]);
+    }
 
     public function store(Request $request)
     {
@@ -62,13 +69,10 @@ return redirect('/backend/blog/admin');
             */
 
             if ($request->hasFile('image')) {
-
                 $path = $request->file('image')->store('public');
             } else {
                 $path = '';
             }
-
-
             admin::create([
                 'type' => request()->get('type'),
                 'title' => request()->get('title'),
@@ -83,29 +87,52 @@ return redirect('/backend/blog/admin');
         return redirect()->to("/backend/blog/admin");
     }
 
-    public function edit()
+    public function edit($id,admin $admins)
     {
-        dd("edit");
+        $admins =admin::find($id);
+        if (!$admins){
+            abort(404);
+        }
+        return view('backend.blog.update',compact('admins'));
     }
 
-
-    public
-    function destroy()
+    public function update($id,Request $request, admin $admins)
     {
-        dd("destroy");
+        /*
+        $admins = admin::findOrFail($id);
+        request()->validate([
+            //    'type' => 'required',
+            'title' => 'required',
+            'reply' => 'required',
+            'body' => 'required',
+            ///    'file' => 'required',
+        ]);
+
+        $admins->update($request->all()->save());
+
+        return redirect("/backend/blog/admin")
+            ->with('success','Product updated successfully');
+        */
+
+        $this->validate($request,[
+            'title' => 'required',
+            'reply' => 'required',
+            'body' => 'required',
+        ]);
+        $admins = admin::find($id);
+        $admins -> title = $request->title;
+        $admins -> reply = $request->reply;
+        $admins -> body = $request->body;
+        $admins->save();
+        return redirect("/backend/blog/admin");
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    public
-    function imageUploadPost()
-
+    public function destroy($id)
     {
+        $admins = admin::find($id);
+        $admins->delete();
 
-
+        return redirect('/backend/blog/admin');
     }
+
 }
