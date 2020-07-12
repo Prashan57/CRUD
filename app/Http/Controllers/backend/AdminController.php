@@ -12,7 +12,9 @@ class AdminController extends BackendController
     {
         $admin = admin::latest()->paginate(6);
         $adminCount = admin::count();
-        return view("backend.blog.admin", compact("admin", "adminCount"));
+        return view("backend.blog.admin", compact("admin", "adminCount"))
+        ->with('i', (request()->input('page', 1) - 1) * 5);
+
     }
 
     public function show($id) {

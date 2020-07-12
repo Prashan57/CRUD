@@ -58,7 +58,7 @@
                                                 <a href="{{ route("admin.edit",["$admins->id"]) }}" class="btn btn-xs btn-default">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <a href="{{ route("admin.show",["$admins->id"]) }}" class="btn btn-xs btn-danger">
+                                                <a href="{{ route("admin.destroy",["$admins->id"]) }}" class="btn btn-xs btn-danger">
                                                     <i class="fa fa-times"></i>
                                                 </a>
                                             </td>
@@ -80,12 +80,7 @@
                         <div class="box-footer clearfix">
                             <div class="pull-left">
                                 <ul class="pagination no-margin">
-                                    <li><a href="#">&laquo;</a> </li>
-                                    <li><a href="#">1</a> </li>
-                                    <li><a href="#">2</a> </li>
-                                    <li><a href="#">3</a> </li>
-                                    <li><a href="#">&raquo;</a> </li>
-                                    <li></li>
+                                    {!! $admin->links() !!}
                                 </ul>
                             </div>
                             <div class="pull-right">
