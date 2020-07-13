@@ -10,7 +10,7 @@ class AdminController extends BackendController
 {
     public function index()
     {
-        $admin = admin::latest()->paginate(6);
+        $admin = admin::latest()->paginate(8);
         $adminCount = admin::count();
         return view("backend.blog.admin", compact("admin", "adminCount"))
         ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -115,16 +115,44 @@ return redirect('/backend/blog/admin');
         return redirect("/backend/blog/admin")
             ->with('success','Product updated successfully');
         */
+        /*
+        if($request->file != ''){
+            $path = public_path().'/uploads/images/';
 
+            //code for remove old file
+            if($admins->file != ''  && $admins->file != null){
+                $file_old = $path.$admins->file;
+                unlink($file_old);
+            }
+
+            //upload new file
+            $file = $request->file;
+            $filename = $file->getClientOriginalName();
+            $file->move($path, $filename);
+
+            //for update in table
+            $admins->update(['file' => $filename]);
+        }
+*/
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public');
+        } else {
+            $path = '';
+        }
         $this->validate($request,[
+            'type' => 'required',
             'title' => 'required',
             'reply' => 'required',
             'body' => 'required',
+            'file' => $path
         ]);
         $admins = admin::find($id);
+        $admins -> type = $request->type;
         $admins -> title = $request->title;
         $admins -> reply = $request->reply;
         $admins -> body = $request->body;
+        $admins -> file = $path;
+
         $admins->save();
         return redirect("/backend/blog/admin");
     }

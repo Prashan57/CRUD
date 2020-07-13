@@ -31,35 +31,42 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-body ">
-                            <form action="{{ route("admin.update",["$admins->id"]) }}" method="POST">
+                            <form action="{{ route("admin.update",["$admins->id"]) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
-                                {{--}}
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                                <div class="form-group">
-                                                    <strong>Type:</strong>
-                                                    <input type="text" name="type" value="{{ $admins->type }}" class="form-control" placeholder="Type">
-                                                </div>
-                                            </div>
-                                            --}}
-
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Type / Category:</strong>
+                                        <select name="type" id="type" name="type">
+                                            <option value="app-developer">Application Developer</option>
+                                            <option value="front-end">Front-End Developer</option>
+                                            <option value="back-end">Back end Developer</option>
+                                            <option value="full-web-developer">Full Web Developer</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Title:</strong>
-                                        <textarea class="form-control" style="height:150px" name="title" placeholder="title">{{ $admins->title }}</textarea>
+                                        <input type="text" class="form-control" name="title" placeholder="{{ $admins->title }}" value="{{ $admins->title }}">{{ $admins->title }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Reply To:</strong>
-                                        <textarea class="form-control" style="height:150px" name="reply" placeholder="Reply">{{ $admins->reply }}</textarea>
+                                        <input type="text" class="form-control" name="reply" placeholder="{{ $admins->reply }}" value="{{ $admins->reply }}">{{ $admins->reply }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Body:</strong>
                                         <textarea class="form-control" style="height:150px" name="body" placeholder="Content">{{ $admins->body }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Image File:</strong>
+                                        <input type="file" name="image" value="{{ $admins->file }}">{{ $admins->file }}
                                     </div>
                                 </div>
 
