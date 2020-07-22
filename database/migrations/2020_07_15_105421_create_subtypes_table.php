@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBlogsTable extends Migration
+class CreateSubtypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateBlogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('blogs', function (Blueprint $table) {
+        Schema::create('type', function (Blueprint $table) {
             $table->increments("id");
+            $table->string("title");
+            $table->string("reply")->nullable();
+            $table->string("body");
+            $table->string("file");
+            $table->integer("type_id")->unsigned();
             $table->timestamps();
-            $table->string('name');
-            $table->string('type');
-            $table->string('base');
-            $table->string('email');
-            $table->json('design') -> nullable();
-            $table->string('body');
+
+ //          $table->foreign("type_id")->references("id")->on("admins");
         });
     }
 
@@ -32,6 +33,6 @@ class CreateBlogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('type');
     }
 }

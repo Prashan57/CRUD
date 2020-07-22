@@ -5,6 +5,9 @@
 @section('content')
     <!-- Form Styling -->
     <link rel="stylesheet" href="/backend/css/from.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/css/jasny-bootstrap.css.map">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css">
     <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css">
 
     <div class="content-wrapper">
@@ -37,7 +40,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Type / Category:</strong>
-                                        <select name="type" id="type" name="type">
+                                        <select name="type" id="type">
                                             <option value="app-developer">Application Developer</option>
                                             <option value="front-end">Front-End Developer</option>
                                             <option value="back-end">Back end Developer</option>
@@ -63,13 +66,21 @@
                                         <textarea class="form-control" style="height:150px" name="body" placeholder="Content">{{ $admins->body }}</textarea>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <strong>Image File:</strong>
-                                        <input type="file" name="image" value="{{ $admins->file }}">{{ $admins->file }}
+                                <div>
+                                    <input type="file" name="image" value="{{ $admins->file }}">{{ $admins->file }}
+                                    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                </div>
+                                <br/>
+
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="{{ url('/').Storage::url($admins->file) }}" /></div>
+                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                    <div>
+                                        <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
                                     </div>
                                 </div>
-
+                                <br/>
+                                <hr>
                                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                                     <button type="submit" class="btn btn-primary">Update Data</button>
                                 </div>
@@ -93,4 +104,7 @@
     </script>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/js/jasny-bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/js/jasny-bootstrap.js"></script>
 @endsection
+

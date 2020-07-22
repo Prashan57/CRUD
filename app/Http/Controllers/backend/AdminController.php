@@ -72,7 +72,8 @@ return redirect('/backend/blog/admin');
 
             if ($request->hasFile('image')) {
                 $path = $request->file('image')->store('public');
-            } else {
+            }
+            else {
                 $path = '';
             }
             admin::create([
@@ -98,7 +99,7 @@ return redirect('/backend/blog/admin');
         return view('backend.blog.update',compact('admins'));
     }
 
-    public function update($id,Request $request, admin $admins)
+    public function update($id,Request $request)
     {
         /*
         $admins = admin::findOrFail($id);
@@ -134,19 +135,19 @@ return redirect('/backend/blog/admin');
             $admins->update(['file' => $filename]);
         }
 */
+        $admins = admin::find($id);
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('public');
-        } else {
-            $path = '';
+        }
+        else {
+            $path = $admins->file;
         }
         $this->validate($request,[
             'type' => 'required',
             'title' => 'required',
             'reply' => 'required',
             'body' => 'required',
-            'file' => $path
         ]);
-        $admins = admin::find($id);
         $admins -> type = $request->type;
         $admins -> title = $request->title;
         $admins -> reply = $request->reply;

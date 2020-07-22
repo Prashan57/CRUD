@@ -49,7 +49,7 @@ class BlogController extends BackendController
      */
     public function show($id)
     {
-     //   $users = DB::select('select * from blogs where id = ?',[$id]);
+     //   $users = selected::select('select * from blogs where id = ?',[$id]);
      //   return view('backend/blog/update',['users'=>$users]);
     }
 
@@ -61,9 +61,9 @@ class BlogController extends BackendController
  //       $design = $request->input('design');
  //       $body = $request->input('body');
 //$data=array('first_name'=>$first_name,"last_name"=>$last_name,"city_name"=>$city_name,"email"=>$email);
-//DB::table('student')->update($data);
-// DB::table('student')->whereIn('id', $id)->update($request->all());
- //       DB::update('update blogs set name = ?,type=?,email=?,base=?,design=?,body=? where id = ?',[$name,$type,$email,$base,$design,$body,$id]);
+//selected::table('student')->update($data);
+// selected::table('student')->whereIn('id', $id)->update($request->all());
+ //       selected::update('update blogs set name = ?,type=?,email=?,base=?,design=?,body=? where id = ?',[$name,$type,$email,$base,$design,$body,$id]);
   ///      echo "Record updated successfully.
 //";
   //      echo 'Click Here to go back.';
