@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\blog;
+use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,8 @@ class BlogController extends BackendController
      */
     public function create()
     {
-        return view("backend.blog.create");
+        $category = category::all();
+        return view("backend.blog.create",compact("category"));
     }
 
     /**

@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\blog;
+use App\Footer;
 
 class BlogController extends Controller
 {
+    public function welcome(){
+    $footer = Footer::all();
+    return view("welcome",compact("footer"));
+    }
+
     public function index() {
 
         $blogs = blog::all();

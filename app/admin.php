@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\backend;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class admin extends Model
 {
     protected $fillable = [
-     //   "type",
+        "category_id",
         "title",
         "reply",
         "body",
         "file",
     ];
+
     public function dateFormatted($showTimes = false)
     {
         $format = "d/m/y";

@@ -67,12 +67,13 @@
 
                             <form action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <label for="type">Type :</label>
-                                <select name="type" id="type">
-                                    <option value="app-developer">Application Developer</option>
-                                    <option value="front-end">Front-End Developer</option>
-                                    <option value="back-end">Back end Developer</option>
-                                    <option value="full-web-developer">Full Web Developer</option>
+                                <label for="type">Category / Type:</label>
+                                <select name="category_id" id="category_id">
+                                    @foreach($category as $cat)
+                                    <option value="{{ $cat->id }}">
+                                            {{ $cat->name }}
+                                    </option>
+                                    @endforeach
                                 </select>
                                 <label for="title">Title :</label>
                                 <input type="text" name="title" id="title" required>

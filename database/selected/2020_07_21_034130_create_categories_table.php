@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubtypesTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,10 @@ class CreateSubtypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('type', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments("id");
-            $table->string("title");
-            $table->string("reply")->nullable();
-            $table->string("body");
-            $table->string("file");
-            $table->integer("type_id")->unsigned();
+            $table->string("name");
             $table->timestamps();
-
- //          $table->foreign("type_id")->references("id")->on("admins");
         });
     }
 
@@ -33,6 +27,6 @@ class CreateSubtypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type');
+        Schema::dropIfExists('categories');
     }
 }

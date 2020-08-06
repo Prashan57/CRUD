@@ -81,14 +81,5 @@
     </main>
 </div>
 
-<footer>
-    <h5>Let's get hooked.</h5>
-    <p>
-        Nepal <br/>
-        E-mail          : pprashan8@gmail.com   <br/>
-        Phone Number    : +977 9860465706       <br/>
-        Facebook        : Prajapati Prashan     <br/>
-    </p>
-</footer>
 </body>
 </html>

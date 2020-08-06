@@ -31,9 +31,10 @@
                     <li><a href="{{ route("admin") }}"><i class="fa fa-circle-o"></i> Admin Adds</a></li>
                     <li><a href="{{ route("blog.index") }}"><i class="fa fa-circle-o"></i> All Posts</a></li>
                     <li><a href="{{ route("blog.create")}}"><i class="fa fa-circle-o"></i> Add New</a></li>
+                    <li><a href="{{ route("footer.index")}}"><i class="fa fa-circle-o"></i> Footer</a></li>
                 </ul>
             </li>
-            {{--<li><a href="#"><i class="fa fa-folder"></i> <span>Categories</span></a></li>--}}
+            <li><a href="{{ route("category.index") }}"><i class="fa fa-folder"></i> <span>Categories</span></a></li>
         </ul>
     </section>
     <!-- /.sidebar -->

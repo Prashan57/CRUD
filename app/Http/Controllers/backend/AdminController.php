@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Http\Controllers\backend\admin;
+use App\admin;
+use App\Category;
 use Illuminate\Http\Request;
 use Throwable;
 
@@ -10,9 +11,10 @@ class AdminController extends BackendController
 {
     public function index()
     {
+        $category = category::all();
         $admin = admin::latest()->paginate(8);
         $adminCount = admin::count();
-        return view("backend.blog.admin", compact("admin", "adminCount"))
+        return view("backend.blog.admin", compact("admin", "adminCount","category"))
         ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
@@ -54,12 +56,11 @@ return redirect('/backend/blog/admin');
 */
         try {
             $this->validate(request(), [
-                'type' => 'required',
+                'category_id' => 'required',
                 'title' => 'required',
                 'body' => 'required',
                 'reply' => 'required',
-
-                //    'file' => 'required|image|mimes:jpg,jpeg,png,gif'
+              //  'file' => 'required|image|mimes:jpg,jpeg,png,gif'
             ]);
             /*
             $fileName = null;
@@ -77,7 +78,7 @@ return redirect('/backend/blog/admin');
                 $path = '';
             }
             admin::create([
-                'type' => request()->get('type'),
+                'category_id' => request()->get('category_id'),
                 'title' => request()->get('title'),
                 'body' => request()->get('body'),
                 'reply' => request()->get('reply'),
@@ -143,12 +144,12 @@ return redirect('/backend/blog/admin');
             $path = $admins->file;
         }
         $this->validate($request,[
-            'type' => 'required',
+            'category' => 'required',
             'title' => 'required',
             'reply' => 'required',
             'body' => 'required',
         ]);
-        $admins -> type = $request->type;
+        $admins -> category = $request->category;
         $admins -> title = $request->title;
         $admins -> reply = $request->reply;
         $admins -> body = $request->body;

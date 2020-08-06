@@ -48,4 +48,15 @@
 
         </div>
     </section>
+    <footer>
+        @foreach($footer as $foot)
+        <h5>{{ $foot->caption }}</h5>
+        <p>
+            {{ $foot->location }} <br/>
+            E-mail          : {{ $foot->email }}   <br/>
+            Phone Number    : {{ $foot->phone }}       <br/>
+            Facebook        : {{ $foot->fb }}     <br/>
+        </p>
+        @endforeach
+    </footer>
 @endsection

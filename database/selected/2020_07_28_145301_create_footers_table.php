@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypeTable extends Migration
+class CreateFootersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('type', function (Blueprint $table) {
-            $table->increments("id");
-            $table->string("Developer");
+        Schema::create('footers', function (Blueprint $table) {
+            $table ->increments("id");
+            $table ->string("caption");
+            $table ->string("location");
+            $table ->string("email");
+            $table ->string("phone");
+            $table ->string("fb");
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type');
+        Schema::dropIfExists('footers');
     }
 }

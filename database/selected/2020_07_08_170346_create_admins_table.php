@@ -15,7 +15,7 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->increments("id");
-            $table->string("type");
+            $table->integer("category_id");
             $table->string("title");
             $table->string("reply")->nullable();
             $table->string("body");

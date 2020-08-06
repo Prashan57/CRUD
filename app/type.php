@@ -1,19 +1,22 @@
 <?php
 
 namespace App;
-namespace App\Http\Controllers\backend;
 
 use Illuminate\Database\Eloquent\Model;
 
 class type extends Model
 {
     protected $fillable = [
-        "type",
-        "title",
-        "reply",
-        "body",
-        "file",
+        "category_id"
     ];
+
+    public function category(){
+        return $this->belongsTo("App\Category","category_id");
+    }
+    public function admin(){
+        return $this->belongsTo("App\Category","category_id");
+    }
+
     /*
     public function posts()
     {
