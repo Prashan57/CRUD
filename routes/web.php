@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/', 'BlogController@welcome')->name('welcome');
-Route::get('/admin_adds', 'BlogController@adminadd')->name('add');
+Route::get('/admin/add', 'BlogController@add')->name('add');
 
 Route::get('/blogs', 'BlogController@index')->name('index')->middleware('auth');
 Route::get('/blogs/create', 'BlogController@create')->name('create');

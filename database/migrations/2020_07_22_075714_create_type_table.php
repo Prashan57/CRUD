@@ -17,7 +17,6 @@ class CreateTypeTable extends Migration
             $table->increments("id");
             $table->integer("category_id")->unsigned();
             $table->foreign("category_id")->references("id")->on("categories");
-            $table->foreign("category_id")->references("id")->on("admins");
             $table->timestamps();
             $table->softDeletes();
         });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\admin;
 use Illuminate\Http\Request;
 use App\blog;
 use App\Footer;
@@ -57,8 +58,9 @@ class BlogController extends Controller
 
         return redirect('/blog');
     }
-    public function adminadd()
+    public function add()
     {
-        return view("blog.add");
+        $admin = admin::all();
+        return view("blog.add",compact("admin"));
     }
 }
