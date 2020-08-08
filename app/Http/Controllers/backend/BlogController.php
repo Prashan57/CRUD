@@ -69,7 +69,7 @@ class BlogController extends BackendController
   ///      echo "Record updated successfully.
 //";
   //      echo 'Click Here to go back.';
-        User::where('user_id', 1)->update( array('username'=>'admin', 'status'=>'active') );
+   //     User::where('user_id', 1)->update( array('username'=>'admin', 'status'=>'active') );
     }
 
     public function update($id)

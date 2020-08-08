@@ -43,7 +43,7 @@
                                     <thead>
                                     <tr>
                                         <th>Action</th>
-                                        <td>Type</td>
+                                        <td>Category ID</td>
                                         <td>Title</td>
                                         <td>Body</td>
                                         <td>Image File</td>
@@ -62,7 +62,7 @@
                                                     <i class="fa fa-times"></i>
                                                 </a>
                                             </td>
-                                            <td>{{ $admins->type }}</td>
+                                            <td>{{ $admins->category_id }}</td>
                                             <td>{{ $admins->title }}</td>
                                             <td>{{ $admins->body }}</td>
                                             <td>{{ $admins->file }}</td>

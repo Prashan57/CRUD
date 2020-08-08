@@ -15,6 +15,7 @@
     </div>
 
     <div class="image-1">
+        <a href="{{route("add")}}"><input type="submit" value="All the Posts made By Admin User"></a>
         <p> Together We Can Define A New World </p>
         <article>
             A new interface lightens up new ideas and creativity. Together we can grow steadily and quickly. The more we unite and help each other we can grow more advanced and meaningful interfaces. A new idea is a new creativity and a path to a better way. Growing slow but steadily is the concept i believe on. Building a interface that is user-friendly and easy to use and operate is th target that attracts more user to be more interactive and willing to stay tuned with us. Dealing errors, bugs, and problems together can make us move faster and easily forward.

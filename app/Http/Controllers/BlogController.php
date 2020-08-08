@@ -56,6 +56,9 @@ class BlogController extends Controller
         $blogs->delete();
 
         return redirect('/blog');
-
+    }
+    public function adminadd()
+    {
+        return view("blog.add");
     }
 }
