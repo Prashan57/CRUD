@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'BlogController@welcome')->name('welcome');
 Route::get('/admin/add', 'BlogController@add')->name('add');
+Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard')->middleware("auth");
 
 Route::get('/blogs', 'BlogController@index')->name('index')->middleware('auth');
 Route::get('/blogs/create', 'BlogController@create')->name('create');
@@ -47,4 +48,8 @@ Route::resource("/backend/blog", "Backend\BlogController");
 Route::resource("/backend/category", "Backend\CategoryController");
 
 Route::resource("/backend/footer", "Backend\FooterController");
+
+Route::resource("/backend/AdminUser", "Backend\AdminUserController");
+
+Route::resource("/backend/Setting", "Backend\SettingController");
 

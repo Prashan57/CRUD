@@ -15,6 +15,11 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li>
+                <a href="/backend/AdminUser">
+                    <i class="fa fa-user fa-fw"></i> <span>Admin Profile</span>
+                </a>
+            </li>
+            <li>
                 <a href="/home">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
@@ -35,6 +40,7 @@
                 </ul>
             </li>
             <li><a href="{{ route("category.index") }}"><i class="fa fa-folder"></i> <span>Categories</span></a></li>
+            <li><a href="{{ route("Setting.index") }}"><i class="fa fa-cog fa-2px"></i> <span>Settings</span></a></li>
         </ul>
     </section>
     <!-- /.sidebar -->

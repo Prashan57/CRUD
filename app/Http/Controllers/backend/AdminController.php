@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\admin;
 use App\Category;
+use App\Setting;
 use Illuminate\Http\Request;
 use Throwable;
 
@@ -166,5 +167,9 @@ return redirect('/backend/blog/admin');
 
         return redirect('/backend/blog/admin');
     }
-
+    public function dashboard(){
+        $Setting = Setting::all();
+        $SettingCount = Setting::count();
+        return view("layouts.backend.dashboard",compact("Setting","SettingCount"));
+    }
 }
