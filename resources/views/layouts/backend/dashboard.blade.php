@@ -41,11 +41,14 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.3.6
         </div>
+        {{--
         @foreach($Setting as $set)
         <strong>{{ $set->copyright }}
         <a href="{{ $set->link }}" target="_blank" >{{ $set->linkname }}</a>
         </strong>
         @endforeach
+
+        --}}
     </footer>
 
 </div>

@@ -14,8 +14,7 @@ class AdminUser extends Model
     }
 
     protected $fillable = [
-        "sidebar",
-        "copyright",
-        "logo",
+        "name",
+        "file",
     ];
 }

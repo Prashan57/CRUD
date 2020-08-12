@@ -1,6 +1,6 @@
 @extends('layouts.backend.dashboard')
 
-@section('title',"Blog | Footer")
+@section('title',"Blog | Admin User")
 
 @section('content')
     <!-- Form Styling -->
@@ -12,7 +12,7 @@
         <section class="content-header">
             <h1>
                 Blog<br/>
-                <small>Add new post</small>
+                <small>New Admin User</small>
             </h1>
             <ol class="breadcrumb">
                 <li>
@@ -21,7 +21,7 @@
                 <li>
                     <a href="{{ route("blog.index") }}">Blog</a>
                 </li>
-                <li class="active">Add new</li>
+                <li class="active">Add new admin user</li>
             </ol>
         </section>
 
@@ -32,20 +32,12 @@
                     <div class="box">
                         <div class="box-body ">
 
-                            <form action="{{ route('footer.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('AdminUser.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <label for="caption">Caption :</label>
-                                <input type="text" name="caption" id="caption" required>
-                                <label for="location">Location :</label>
-                                <input type="text" name="location" id="location" required>
-                                <label for="email">Email :</label>
-                                <input type="text" name="email" id="email" required>
-                                <label for="fb">Facebook Id :</label>
-                                <input type="text" name="fb" id="fb" required>
-                                <br/>
-                                <br/>
-                                <label for="phone">Phone / Contact Number :</label>
-                                <input type="number" name="phone" id="phone" required>
+                                <label for="caption">Username :</label>
+                                <input type="text" name="name" id="name" required>
+                                <label for="location">Photo / Featured Image :</label>
+                                <input type="file" name="image">
                                 <hr>
                                 <input type="submit" value="SUBMIT">
                             </form>

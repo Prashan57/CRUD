@@ -1,6 +1,6 @@
 @extends('layouts.backend.dashboard')
 
-@section("title","Blog | Footer")
+@section("title","Blog | Admin User")
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -16,7 +16,7 @@
                 <li>
                     <a href="{{ route("blog.index") }}">Blog</a>
                 </li>
-                <li class="active">All Submits</li>
+                <li class="active">Admin User Profile</li>
             </ol>
         </section>
 
@@ -26,52 +26,41 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            @if($footerCount<1)
+                            @if($userCount<1)
                                 <div class="pull-left">
-                                    <a href="{{ route("footer.create") }}" class="btn btn-success">Create a New Footer</a>
+                                    <a href="{{ route("AdminUser.create") }}" class="btn btn-success">Create a New Admin User</a>
                                 </div>
                             @endif
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body ">
-                            @if( ! $footer->count())
+                            @if( ! $user->count())
                                 <div class="alert alert-danger">
                                     <strong>No Record Found</strong>
                                 </div>
                             @else
-                                @foreach($footer as $foot)
+                                @foreach($user as $users)
+                                    <div style="text-align: center">
                                     <div style="font-size: 18px">
+                                        <img src="{{ url('/').Storage::url($users->file) }}" style="width: 50%;height: 50%;border-radius:50px"/><br/><br/>
+                                        <strong>{{ Auth::User()->name }}</strong><br/>
+                                        <hr>
+                                        <strong>Username :</strong><br/>
+                                        <small>{{ $users->name }}</small><br/><hr>
                                         <strong>Take action  </strong>
-                                        <a href="{{ route("footer.edit",$foot->id) }}" class="btn btn-xs btn-default">
+                                        <a href="{{ route("AdminUser.edit",$users->id) }}" class="btn btn-xs btn-default">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a href="{{ route("footer.show", $foot->id) }}" class="btn btn-xs btn-danger">
+                                        <a href="{{ route("AdminUser.show", $users->id) }}" class="btn btn-xs btn-danger">
                                             <i class="fa fa-times"></i>
                                         </a>
-                                        <br/>
                                         <hr>
-                                        <strong>Caption</strong><br/>
-                                        <small>{{ $foot->caption }}</small><br/><hr>
-                                        <strong>Location</strong><br/>
-                                        <small>{{ $foot->location }}</small><br/><hr>
-                                        <strong>E-mail Address</strong><br/>
-                                        <small>{{ $foot->email }}</small><br/><hr>
-                                        <strong>Phone / Contact Number</strong><br/>
-                                        <small>{{ $foot->phone }}</small><br/><hr>
-                                        <strong>Facebook ID</strong><br/>
-                                        <small>{{ $foot->fb }}</small><br/><hr>
                                         <strong>Date (recently uploaded)</strong><br/>
-                                        <small><abbr title="{{ $foot->dateFormatted(true) }}">{{ $foot-> dateFormatted() }}</abbr></small><br/>
+                                        <small><abbr title="{{ $users->dateFormatted(true) }}">{{ $users-> dateFormatted() }}</abbr></small><br/>
+                                    </div>
                                     </div>
                                 @endforeach
                             @endif
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer clearfix">
-                            {!! $footer->links() !!}
-                            <div class="pull-right">
-                                <small> {{ $footerCount }} {{ Str::plural('Item', $footerCount ?? '') }}</small>
-                            </div>
                         </div>
                     </div>
 

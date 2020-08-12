@@ -1,6 +1,6 @@
 @extends('layouts.backend.dashboard')
 
-@section('title',"Blog | Footer Edit")
+@section('title',"Blog | Admin User Edit")
 
 @section('content')
     <!-- Form Styling -->
@@ -12,7 +12,7 @@
         <section class="content-header">
             <h1>
                 Blog<br/>
-                <small>Edit / Update Footer for changes</small>
+                <small>Edit / Update Admin user details</small>
             </h1>
             <ol class="breadcrumb">
                 <li>
@@ -21,7 +21,7 @@
                 <li>
                     <a href="{{ route("blog.index") }}">Blog</a>
                 </li>
-                <li class="active">Edit / Update Footer</li>
+                <li class="active">Edit / Update Admin User</li>
             </ol>
         </section>
 
@@ -32,23 +32,16 @@
                     <div class="box">
                         <div class="box-body ">
 
-                            <form action="{{ route("footer.update",["$footer->id"]) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route("AdminUser.update",["$user->id"]) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
-                                <label for="caption">Caption :</label>
-                                <input type="text" name="caption" id="caption" value="{{ $footer->caption }}" required>
-                                <label for="location">Location :</label>
-                                <input type="text" name="location" id="location" value="{{ $footer->location }}" required>
-                                <label for="email">E-mail Address :</label>
-                                <input type="text" name="email" id="email" value="{{ $footer->email }}" required>
-                                <label for="fb">Facebook ID :</label>
-                                <input type="text" name="fb" id="fb" value="{{ $footer->fb }}" required>
-                                <br/>
-                                <br/>
-                                <label for="phone">Phone / Contact Number :</label>
-                                <input type="number" name="phone" id="phone" value="{{ $footer->phone }}" required>
-                                <br/>
-                                <br/>
+                                <label for="caption">Username :</label>
+                                <input type="text" name="name" id="name" value="{{ $user->name }}" required>
+                                <label for="location">File / Featured Image:</label>
+                                <input type="file" name="image" value="{{ $user->file }}" required>
+                                {{ $user->file }}<br/>
+                                <img src="{{ url('/').Storage::url($user->file) }}" style="width:40%"/>
+                                <hr/>
                                 <input type="submit" value="UPDATE">
                             </form>
                         </div>

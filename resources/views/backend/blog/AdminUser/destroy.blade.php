@@ -1,6 +1,6 @@
 @extends('layouts.backend.dashboard')
 
-@section("title","Blog | Footer")
+@section("title","Blog | Admin User")
 @section('content')
     <!-- Form Styling -->
     <link rel="stylesheet" href="/backend/css/from.css">
@@ -11,7 +11,7 @@
         <section class="content-header">
             <h1>
                 Blog<br/>
-                <small>Delete the footer created</small>
+                <small>Delete the User (Admin User)</small>
             </h1>
             <ol class="breadcrumb">
                 <li>
@@ -20,7 +20,7 @@
                 <li>
                     <a href="{{ route("blog.index") }}">Blog</a>
                 </li>
-                <li class="active">Delete footer</li>
+                <li class="active">Delete user</li>
             </ol>
         </section>
 
@@ -30,29 +30,24 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-body ">
-                            <h3>Footer created by {{ Auth::User()->name }}</h3>
+                            <h3>{{ Auth::User()->name }}</h3>
                             <hr>
 
 
                             <div style="font-size: 18px">
-                                <strong>Caption</strong><br/>
-                                <small>{{ $footer->caption }}</small><br/><hr>
-                                <strong>Location</strong><br/>
-                                <small>{{ $footer->location }}</small><br/><hr>
-                                <strong>E-mail Address</strong><br/>
-                                <small>{{ $footer->email }}</small><br/><hr>
-                                <strong>Phone / Contact Number</strong><br/>
-                                <small>{{ $footer->phone }}</small><br/><hr>
-                                <strong>Facebook ID</strong><br/>
-                                <small>{{ $footer->fb }}</small><br/><hr>
+                                <strong>Username :</strong><br/>
+                                <small>{{ $user->name }}</small><br/><hr>
+                                <strong>File / Image uploaded :</strong><br/>
+                                <small>{{ $user->file }}</small><br/><hr>
+
                                 <strong>Date (recently uploaded)</strong><br/>
-                                <small><abbr title="{{ $footer->dateFormatted(true) }}">{{ $footer-> dateFormatted() }}</abbr></small><br/>
+                                <small><abbr title="{{ $user->dateFormatted(true) }}">{{ $user-> dateFormatted() }}</abbr></small><br/>
                             </div>
                             <hr>
-                            <form action="{{ route('footer.destroy', $footer->id) }}" method="POST">
+                            <form action="{{ route('AdminUser.destroy', $user->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="DELETE FOOTER">
+                                <input type="submit" value="DELETE USER">
                             </form>
                         </div>
                     </div>

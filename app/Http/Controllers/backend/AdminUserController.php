@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\User;
 use App\AdminUser;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class AdminUserController extends BackendController
      */
     public function index()
     {
-        return view("backend.blog.AdminUser.index");
+        $user = AdminUser::all();
+        $userCount = AdminUser::count();
+        return view("backend.blog.AdminUser.index",compact("user","userCount"));
     }
 
     /**
@@ -24,7 +27,7 @@ class AdminUserController extends BackendController
      */
     public function create()
     {
-        //
+        return view("backend.blog.AdminUser.create");
     }
 
     /**
@@ -35,7 +38,28 @@ class AdminUserController extends BackendController
      */
     public function store(Request $request)
     {
-        //
+
+        try {
+            $this->validate(request(), [
+                'name' => 'required',
+                //  'file' => 'required|image|mimes:jpg,jpeg,png,gif'
+            ]);
+
+            if ($request->hasFile('image')) {
+                $path = $request->file('image')->store('public');
+            }
+            else {
+                $path = '';
+            }
+            AdminUser::create([
+                'name' => request()->get('name'),
+                'file' => $path,
+            ]);
+
+        } catch (Throwable $e) {
+            dd($e);
+        }
+        return redirect()->to("/backend/AdminUser");
     }
 
     /**
@@ -44,9 +68,12 @@ class AdminUserController extends BackendController
      * @param  \App\AdminUser  $adminUser
      * @return \Illuminate\Http\Response
      */
-    public function show(AdminUser $adminUser)
+    public function show($id)
     {
-        //
+
+        $user = AdminUser::findOrFail($id);
+
+        return view('backend.blog.AdminUser.destroy', ['user' => $user]);
     }
 
     /**
@@ -55,9 +82,14 @@ class AdminUserController extends BackendController
      * @param  \App\AdminUser  $adminUser
      * @return \Illuminate\Http\Response
      */
-    public function edit(AdminUser $adminUser)
+    public function edit($id,AdminUser $adminUser)
     {
-        //
+
+        $user =AdminUser::find($id);
+        if (!$user){
+            abort(404);
+        }
+        return view('backend.blog.AdminUser.edit',compact('user'));
     }
 
     /**
@@ -67,9 +99,25 @@ class AdminUserController extends BackendController
      * @param  \App\AdminUser  $adminUser
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AdminUser $adminUser)
+    public function update(Request $request, AdminUser $adminUser,$id)
     {
-        //
+
+        $user = AdminUser::find($id);
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public');
+        }
+        else {
+            $path = $user->file;
+        }
+        $this->validate($request,[
+            'name' => 'required',
+        ]);
+        $user -> name = $request->name;
+        $user -> file = $path;
+
+        $user->save();
+        return redirect("/backend/AdminUser");
     }
 
     /**
@@ -78,8 +126,11 @@ class AdminUserController extends BackendController
      * @param  \App\AdminUser  $adminUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AdminUser $adminUser)
+    public function destroy($id,AdminUser $adminUser)
     {
-        //
+        $user = AdminUser::find($id);
+        $user->delete();
+
+        return redirect('/backend/AdminUser');
     }
 }
